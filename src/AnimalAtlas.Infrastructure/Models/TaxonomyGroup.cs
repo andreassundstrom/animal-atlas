@@ -8,6 +8,10 @@ namespace AnimalAtlas.Infrastructure.Models
 {
     public class TaxonomyGroup : EntityBase
     {
+        public TaxonomyGroup()
+        {
+        }
+
         public int TaxonomyGroupId { get; set; }
         public required string TaxonomyGroupName { get; set; }
     }

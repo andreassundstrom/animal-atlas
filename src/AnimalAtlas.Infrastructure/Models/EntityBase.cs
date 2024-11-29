@@ -13,5 +13,6 @@ namespace AnimalAtlas.Infrastructure.Models
         public DateTime LastUpdatedUtc { get; set; }
         public required string LastUpdatedBy { get; set; }
         public DateTime DeletedUtc { get; set; }
+        public bool Deleted {  get; set; } = false;
     }
 }

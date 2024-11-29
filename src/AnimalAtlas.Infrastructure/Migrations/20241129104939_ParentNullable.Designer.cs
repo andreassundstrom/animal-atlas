@@ -3,6 +3,7 @@ using System;
 using AnimalAtlas.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AnimalAtlas.Infrastructure.Migrations
 {
     [DbContext(typeof(AnimalAtlasContext))]
-    partial class AnimalAtlasContextModelSnapshot : ModelSnapshot
+    [Migration("20241129104939_ParentNullable")]
+    partial class ParentNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
