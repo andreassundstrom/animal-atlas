@@ -126,4 +126,18 @@ export class Api<SecurityDataType = unknown> extends HttpClient<SecurityDataType
       type: ContentType.Json,
       ...params,
     });
+  /**
+   * No description
+   *
+   * @tags TaxonomyItems
+   * @name V1TaxonomyItemsDetail
+   * @request GET:/api/v1/taxonomy-items/{taxonomyItemId}
+   */
+  v1TaxonomyItemsDetail = (taxonomyItemId: number, params: RequestParams = {}) =>
+    this.request<GetTaxonomyItemDto, any>({
+      path: `/api/v1/taxonomy-items/${taxonomyItemId}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
 }

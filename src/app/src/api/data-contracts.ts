@@ -19,6 +19,8 @@ export interface CreateTaxonomyItemDto {
   taxonomyItemName: string;
   /** @format int32 */
   parentId?: number | null;
+  /** @format int32 */
+  groupId: number;
 }
 
 export interface GetTaxonomyGroupDto {
@@ -33,4 +35,5 @@ export interface GetTaxonomyItemDto {
   taxonomyItemName?: string | null;
   /** @format int32 */
   parentId?: number | null;
+  hasChildren?: boolean;
 }

@@ -13,7 +13,7 @@ export const Router = () => {
                 element: <Home />
             },
             {
-                path:'taxonomy',
+                path:'taxonomy/:taxonomyItemId?',
                 element: <Taxonomy />
             }
         ]

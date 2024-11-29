@@ -14,10 +14,12 @@ namespace AnimalAtlas.Api.Dto.TaxonomyItems
             TaxonomyItemId = model.TaxonomyItemId;
             TaxonomyItemName = model.TaxonomyItemName;
             ParentId = model.ParentId;
+            HasChildren = model.Children?.Any() ?? false;
         }
 
         public int TaxonomyItemId { get; private set; }
         public string TaxonomyItemName { get; private set; }
         public int? ParentId { get; private set; }
+        public bool HasChildren { get; private set; }
     }
 }

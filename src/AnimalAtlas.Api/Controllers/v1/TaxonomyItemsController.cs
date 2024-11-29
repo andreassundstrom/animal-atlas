@@ -21,13 +21,29 @@ namespace AnimalAtlas.Api.Controllers.v1
         public ActionResult<IEnumerable<GetTaxonomyItemDto>> GetTaxonomyItems(int? parentId = null)
         {
             var taxonomyItemModels = _animalAtlasContext.TaxonomyItems
+                .AsNoTracking()
+                .Include(p => p.Children)
+                .Include(p => p.Group)
                 .Where(p => p.ParentId == parentId)
-                .Include(p => p.Group).ToList()
                 .ToArray();
 
             var dtos = taxonomyItemModels.Select(p => new GetTaxonomyItemDto(p));
 
             return Ok(dtos.ToArray());
+        }
+
+        [HttpGet("{taxonomyItemId}")]
+        public ActionResult<GetTaxonomyItemDto> GetTaxonomyItem(int taxonomyItemId)
+        {
+            var taxonomyItemModel = _animalAtlasContext.TaxonomyItems
+                .AsNoTracking()
+                .Include(p => p.Children)
+                .Include(p => p.Group)
+                .Single(p => p.TaxonomyItemId == taxonomyItemId);
+
+            var dto = new GetTaxonomyItemDto(taxonomyItemModel);
+
+            return Ok(dto);
         }
 
         [HttpPost]

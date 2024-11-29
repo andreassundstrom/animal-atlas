@@ -8,4 +8,5 @@ public class TaxonomyItem : EntityBase
     public TaxonomyGroup? Group { get; set; }
     public int? ParentId { get; set; }
     public TaxonomyItem? Parent { get; set; }
+    public List<TaxonomyItem>? Children { get; set; }
 }
