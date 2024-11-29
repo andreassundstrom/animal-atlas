@@ -18,6 +18,6 @@ namespace AnimalAtlas.Api.Dto.TaxonomyItems
 
         public int TaxonomyItemId { get; private set; }
         public string TaxonomyItemName { get; private set; }
-        public int ParentId { get; private set; }
+        public int? ParentId { get; private set; }
     }
 }

@@ -18,16 +18,16 @@ namespace AnimalAtlas.Api.Controllers.v1
         }
 
         [HttpGet]
-        public ActionResult GetTaxonomyItems(int? parentId = null)
+        public ActionResult<IEnumerable<GetTaxonomyItemDto>> GetTaxonomyItems(int? parentId = null)
         {
             var taxonomyItemModels = _animalAtlasContext.TaxonomyItems
                 .Where(p => p.ParentId == parentId)
                 .Include(p => p.Group).ToList()
-                .ToList();
+                .ToArray();
 
             var dtos = taxonomyItemModels.Select(p => new GetTaxonomyItemDto(p));
 
-            return Ok();
+            return Ok(dtos.ToArray());
         }
 
         [HttpPost]
@@ -37,6 +37,7 @@ namespace AnimalAtlas.Api.Controllers.v1
             {
                 TaxonomyItemName = taxonomyItemDto.TaxonomyItemName,
                 ParentId = taxonomyItemDto.ParentId,
+                GroupId = taxonomyItemDto.GroupId,
                 CreatedBy = User.Identity?.Name ?? "Unknown",
                 CreatedUtc = DateTime.UtcNow,
                 LastUpdatedBy = User.Identity?.Name ?? "Unknown",

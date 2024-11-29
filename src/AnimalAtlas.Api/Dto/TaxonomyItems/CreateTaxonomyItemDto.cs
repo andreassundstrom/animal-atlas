@@ -7,5 +7,6 @@ namespace AnimalAtlas.Api.Dto.TaxonomyItems
         [Required]
         public required string TaxonomyItemName { get; set; }
         public int? ParentId { get; set; }
+        public int GroupId { get; set; }
     }
 }
