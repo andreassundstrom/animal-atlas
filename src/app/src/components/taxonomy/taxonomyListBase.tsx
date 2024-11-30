@@ -19,19 +19,19 @@ export const TaxonomyListBase = () => {
     const {action, setAction} = useTaxonomyContext()
     const closeDialog = () => setAction(null)
     useEffect(() => {
-        api
+        api?.api
         .v1TaxonomyItemsList()
         .then(res => setTaxonomyList(res.data))
 
-        api
+        api?.api
         .v1TaxonomyGroupsList()
         .then(res => setTaxonomyGroup(res.data))
     },[])
 
     const onSubmit = (taxonomyItem : CreateTaxonomyItemDto) => {
         taxonomyItem.parentId = action?.taxonomyItemId
-        api.
-            v1TaxonomyItemsCreate(taxonomyItem)
+        api?.api
+            .v1TaxonomyItemsCreate(taxonomyItem)
             .then(() => {
                 // refresh?
                 closeDialog()

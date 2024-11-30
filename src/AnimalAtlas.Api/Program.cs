@@ -1,13 +1,19 @@
 using AnimalAtlas.Infrastructure.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.JsonWebTokens;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JwtSettings", options));
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+        {
+            options.Authority = "https://dev-animal-atlas.eu.auth0.com/";
+            options.Audience = "https://animal-atlas.com";
+
+            //builder.Configuration.Bind("JwtSettings", options)
+        });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

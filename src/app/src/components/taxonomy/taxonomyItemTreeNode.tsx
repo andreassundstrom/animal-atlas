@@ -21,7 +21,7 @@ export function TaxonomyItemTreeNode({taxonomyItem, level}:Props){
     const onExpand = (newExpandState : boolean) => {
         setExpand(newExpandState)
         if(newExpandState){
-            api
+            api?.api
             .v1TaxonomyItemsList({parentId: taxonomyItem.taxonomyItemId})
             .then(res => {
                 setChildren(res.data)

@@ -12,6 +12,7 @@
 import {
   CreateTaxonomyGroupDto,
   CreateTaxonomyItemDto,
+  CreateUserDto,
   GetTaxonomyGroupDto,
   GetTaxonomyItemDto,
   GetUserDto,
@@ -153,6 +154,21 @@ export class Api<SecurityDataType = unknown> extends HttpClient<SecurityDataType
       path: `/api/v1/users`,
       method: "GET",
       format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags User
+   * @name V1UsersUpdate
+   * @request PUT:/api/v1/users
+   */
+  v1UsersUpdate = (data: CreateUserDto, params: RequestParams = {}) =>
+    this.request<void, any>({
+      path: `/api/v1/users`,
+      method: "PUT",
+      body: data,
+      type: ContentType.Json,
       ...params,
     });
 }

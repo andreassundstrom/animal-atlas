@@ -33,5 +33,40 @@ namespace AnimalAtlas.Api.Controllers.v1
 
             return Ok(userDto);
         }
+
+        [Authorize]
+        [HttpPut]
+        public ActionResult CreateOrUpdateCurrentUser(CreateUserDto createUserDto)
+        {
+            var userId = User.Claims.Single(p => p.Type == ClaimTypes.NameIdentifier).Value;
+
+            var existingUser = _db.Users.SingleOrDefault(p => p.ExternalId == userId);
+            if(existingUser is null)
+            {
+                var user = new User
+                {
+                    ExternalId = userId,
+                    FirstName = createUserDto.FirstName,
+                    LastName = createUserDto.LastName,
+                    Email = createUserDto.Email,
+                    CreatedBy = userId,
+                    CreatedUtc = DateTime.UtcNow,
+                    LastUpdatedBy = userId,
+                    LastUpdatedUtc = DateTime.UtcNow,
+                };
+                _db.Users.Add(user);
+            }
+            else
+            {
+                existingUser.FirstName = createUserDto.FirstName;
+                existingUser.LastName = createUserDto.LastName;
+                existingUser.Email = createUserDto.Email;
+                existingUser.LastUpdatedBy = userId;
+                existingUser.LastUpdatedUtc = DateTime.UtcNow;
+            }
+
+            _db.SaveChanges();
+            return NoContent();
+        }
     }
 }

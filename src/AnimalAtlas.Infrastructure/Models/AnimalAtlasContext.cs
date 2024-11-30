@@ -13,6 +13,15 @@ namespace AnimalAtlas.Infrastructure.Models
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(p => p.ExternalId)
+                .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public virtual DbSet<TaxonomyItem> TaxonomyItems { get; set; }
         public virtual DbSet<TaxonomyGroup> TaxonomyGroups { get; set; }
         public virtual DbSet<User> Users { get; set; }

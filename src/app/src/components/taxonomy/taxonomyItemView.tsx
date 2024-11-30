@@ -20,7 +20,7 @@ export const TaxonomyItemView = () => {
     useEffect(() => {
         setTabPage(0)
         if(taxonomyItemId !== undefined){
-            api.v1TaxonomyItemsDetail(parseInt(taxonomyItemId))
+            api?.api.v1TaxonomyItemsDetail(parseInt(taxonomyItemId))
             .then(res => setTaxonomyItem(res.data))
         }
     },[taxonomyItemId])

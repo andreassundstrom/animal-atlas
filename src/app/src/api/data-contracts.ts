@@ -23,6 +23,15 @@ export interface CreateTaxonomyItemDto {
   groupId: number;
 }
 
+export interface CreateUserDto {
+  /** @minLength 1 */
+  firstName: string;
+  /** @minLength 1 */
+  lastName: string;
+  /** @minLength 1 */
+  email: string;
+}
+
 export interface GetTaxonomyGroupDto {
   /** @format int32 */
   taxonomyGroupId?: number;

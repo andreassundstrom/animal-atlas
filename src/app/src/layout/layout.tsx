@@ -12,18 +12,20 @@ export const Layout = () => {
       domain="dev-animal-atlas.eu.auth0.com"
       clientId="yfyy8pUfwdYfdRzxFB9prc6eFkj7yWbM"
       authorizationParams={{
-          redirect_uri: window.location.origin
+          redirect_uri: window.location.origin,
+          audience: 'https://animal-atlas.com'
         }}
+      
       >
-    <UserContext>
       <CssBaseline />
       <ApiContext>
+      <UserContext>
         <Navbar />
         <Container sx={{mt:10}}>
             <Outlet />    
         </Container>
+      </UserContext>
       </ApiContext>
-    </UserContext>
     </Auth0Provider>
     </>
 }
