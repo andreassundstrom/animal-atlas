@@ -12,17 +12,17 @@ namespace AnimalAtlas.Api.Controllers.v1
     public class UserController : ControllerBase
     {
         private readonly AnimalAtlasContext _db;
-
+        string ExternalId => User.Claims.Single(p => p.Type == ClaimTypes.NameIdentifier).Value;
         public UserController(AnimalAtlasContext db)
         {
             _db = db;
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public ActionResult<GetUserDto> GetCurrentUser()
         {
-            var user = _db.Users.SingleOrDefault();
+            var user = _db.Users.SingleOrDefault(p => p.ExternalId == ExternalId);
 
             if(user is null)
             {
