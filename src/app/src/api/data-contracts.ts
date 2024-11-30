@@ -37,3 +37,13 @@ export interface GetTaxonomyItemDto {
   parentId?: number | null;
   hasChildren?: boolean;
 }
+
+export interface GetUserDto {
+  firstName?: string | null;
+  lastName?: string | null;
+  name?: string | null;
+  email?: string | null;
+  userProfileCompleted?: boolean;
+  isAdmin?: boolean | null;
+  isSysadmin?: boolean | null;
+}

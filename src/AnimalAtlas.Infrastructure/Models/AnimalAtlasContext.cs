@@ -15,5 +15,7 @@ namespace AnimalAtlas.Infrastructure.Models
 
         public virtual DbSet<TaxonomyItem> TaxonomyItems { get; set; }
         public virtual DbSet<TaxonomyGroup> TaxonomyGroups { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> Roles { get; set; }
     }
 }

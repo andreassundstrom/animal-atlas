@@ -14,6 +14,7 @@ import {
   CreateTaxonomyItemDto,
   GetTaxonomyGroupDto,
   GetTaxonomyItemDto,
+  GetUserDto,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -136,6 +137,20 @@ export class Api<SecurityDataType = unknown> extends HttpClient<SecurityDataType
   v1TaxonomyItemsDetail = (taxonomyItemId: number, params: RequestParams = {}) =>
     this.request<GetTaxonomyItemDto, any>({
       path: `/api/v1/taxonomy-items/${taxonomyItemId}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags User
+   * @name V1UsersList
+   * @request GET:/api/v1/users
+   */
+  v1UsersList = (params: RequestParams = {}) =>
+    this.request<GetUserDto, any>({
+      path: `/api/v1/users`,
       method: "GET",
       format: "json",
       ...params,
